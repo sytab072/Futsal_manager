@@ -8,6 +8,26 @@ class TestView(TestCase):
     def setUp(self):
         self.client = Client()
 
+    def navbar_test(self, soup):
+        # navbar 확인
+        navbar = soup.nav
+        # navbar 문구 확인
+        self.assertIn('Board', navbar.text)
+        self.assertIn('About Me', navbar.text)
+
+        logo_btn = navbar.find('a', text='Community')
+        self.assertEqual(logo_btn.attrs['href'], '/')
+
+        home_btn = navbar.find('a', text='Home')
+        self.assertEqual(home_btn.attrs['href'], '/')
+
+        board_btn = navbar.find('a', text='Board')
+        self.assertEqual(board_btn.attrs['href'], '/board/')
+
+        about_me_btn = navbar.find('a', text='About Me')
+        self.assertEqual(about_me_btn.attrs['href'], '/about_me/')
+
+
     def test_post_list(self):
         #Postlist 로드
         response = self.client.get('/board/')
@@ -16,11 +36,8 @@ class TestView(TestCase):
         #페이지 이름은 'Board'
         soup = BeautifulSoup(response.content, 'html.parser')
         self.assertEqual(soup.title.text, 'Board')
-        #navbar 확인
-        navbar = soup.nav
-        #navbar 문구 확인
-        self.assertIn('Board', navbar.text)
-        self.assertIn('About Me', navbar.text)
+        #navbar
+        self.navbar_test(soup)
 
         #게시물 미존재시
         self.assertEqual(Post.objects.count(), 0)
@@ -65,9 +82,7 @@ class TestView(TestCase):
         soup = BeautifulSoup(response.content, 'html.parser')
 
         # post_list페이지와 같은 navbar가 존재함.
-        navbar = soup.nav
-        self.assertIn('Board', navbar.text)
-        self.assertIn('About Me', navbar.text)
+        self.navbar_test(soup)
 
         # 포스트 제목을 웹 브라우저 탭의 title에서 확인가능
         self.assertIn(post_001.title, soup.title.text)
