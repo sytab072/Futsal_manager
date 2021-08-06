@@ -183,3 +183,33 @@ class TestView(TestCase):
         self.assertIn(self.post_001.title, main_area.text)
         self.assertNotIn(self.post_002.title, main_area.text)
         self.assertNotIn(self.post_003.title, main_area.text)
+
+    def test_create_post(self):
+
+        #비로그인시 , status code 200 불가능하게끔함.(작성이 아예 불가능하게 함.)
+        response = self.client.get('/board/create_post/')
+        self.assertNotEqual(response.status_code, 200)
+
+        #로그인을 함.
+        self.client.login(username='kim', password='kimdjango')
+
+        response = self.client.get('/board/create_post/')
+        self.assertEqual(response.status_code, 200)
+
+        soup = BeautifulSoup(response.content, 'html.parser')
+        self.assertEqual('Create Post - Board', soup.title.next)
+        main_area = soup.find('div', id='main-area')
+
+        self.assertIn('Create New Post', main_area.text)
+
+        self.client.post(
+            '/board/create_post/',
+            {
+                'title': 'Post Form Create',
+                'content': "Post Form Page Create"
+            }
+        )
+        self.assertEqual(Post.objects.count(), 4)
+        last_post = Post.objects.last()
+        self.assertEqual(last_post.title, "Post Form Create")
+        self.assertEqual(last_post.author.username, 'kim')
