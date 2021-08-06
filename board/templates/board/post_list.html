@@ -1,7 +1,7 @@
 {% extends 'board/base.html' %}
 
 {% block main_area %}
-    <h1>Board</h1>
+    <h1>Board {% if category %}<span class="badge badge-secondary">{{ category }}</span>{% endif %}</h1>
 
                   {% if post_list.exists %}
 
