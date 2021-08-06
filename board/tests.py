@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from bs4 import BeautifulSoup
 from django.contrib.auth.models import User
-from .models import Post
+from .models import Post, Category
 
 # Create your tests here.
 
@@ -10,6 +10,28 @@ class TestView(TestCase):
         self.client = Client()
         self.user_kim = User.objects.create_user(username='kim', password='kimdjango')
         self.user_park = User.objects.create_user(username='park', password='parkdjango')
+
+        self.category_programming = Category.objects.create(name='programming', slug='programming')
+        self.category_music = Category.objects.create(name='music', slug='music')
+
+        self.post_001 = Post.objects.create(
+            title='첫 번째 포스트입니다.',
+            content='Hello World. We are the world',
+            category=self.category_programming,
+            author=self.user_kim,
+        )
+
+        self.post_002 = Post.objects.create(
+            title='두 번째 포스트입니다.',
+            content='1등이 전부는 아니잖아요?',
+            category=self.category_music,
+            author=self.user_park,
+        )
+        self.post_003 = Post.objects.create(
+            title='세 번째 포스트입니다.',
+            content='No category post',
+            author=self.user_park,
+        )
 
     def navbar_test(self, soup):
         # navbar 확인
@@ -30,49 +52,57 @@ class TestView(TestCase):
         about_me_btn = navbar.find('a', text='About Me')
         self.assertEqual(about_me_btn.attrs['href'], '/about_me/')
 
+    def category_card_test(self, soup):
+        categories_card = soup.find('div', id='categories-card')
+        self.assertIn('Categories', categories_card.text)
+        self.assertIn(
+            f'{self.category_programming.name} ({self.category_programming.post_set.count()})',
+            categories_card.text
+        )
+        self.assertIn(
+            f'{self.category_music.name} ({self.category_music.post_set.count()})',
+            categories_card.text
+        )
+        self.assertIn(f'미분류 (1)', categories_card.text)
+
 
     def test_post_list(self):
-        #Postlist 로드
+        # 포스트가 존재함.
+        self.assertEqual(Post.objects.count(), 3)
+
         response = self.client.get('/board/')
-        #Page 로드
         self.assertEqual(response.status_code, 200)
-        #페이지 이름은 'Board'
         soup = BeautifulSoup(response.content, 'html.parser')
-        self.assertEqual(soup.title.text, 'Board')
-        #navbar
+
         self.navbar_test(soup)
+        self.category_card_test(soup)
 
-        #게시물 미존재시
-        self.assertEqual(Post.objects.count(), 0)
-        #게시물 없음 문구 확인
         main_area = soup.find('div', id='main-area')
-        self.assertIn('게시물이 존재하지 않습니다', main_area.text)
-        #게시물 두개 존재시
-        post_001 = Post.objects.create(
-            title='첫 번째 포스트입니다.',
-            content='Hello World. We are the world',
-            author=self.user_kim,
-        )
-        post_002 = Post.objects.create(
-            title='두 번째 포스트입니다.',
-            content='1등이 전부는 아니잖아요?',
-            author=self.user_park,
-        )
-        self.assertEqual(Post.objects.count(), 2)
+        self.assertNotIn('게시물이 존재하지 않습니다', main_area.text)
 
-        # post_list를 새로고침할시
-        response = self.client.get('/board/')
-        soup = BeautifulSoup(response.content, 'html.parser')
-        self.assertEqual(response.status_code, 200)
-        # 타이틀 두개 존재(single_pages에)
-        main_area = soup.find('div', id='main-area')
-        self.assertIn(post_001.title, main_area.text)
-        self.assertIn(post_002.title, main_area.text)
-        # 이제 더 이상 게시물이 존재하지않는다는 문구는 보이지 않음.
-        self.assertNotIn('이제 더 이상 게시물이 존재하지 않습니다', main_area.text)
+        post_001_card = main_area.find('div', id='post-1')
+        self.assertIn(self.post_001.title, post_001_card.text)
+        self.assertIn(self.post_001.category.name, post_001_card.text)
+
+        post_002_card = main_area.find('div', id='post-2')
+        self.assertIn(self.post_002.title, post_002_card.text)
+        self.assertIn(self.post_002.category.name, post_002_card.text)
+
+        post_003_card = main_area.find('div', id='post-3')
+        self.assertIn('미분류', post_003_card.text)
+        self.assertIn(self.post_003.title, post_003_card.text)
 
         self.assertIn(self.user_kim.username.upper(), main_area.text)
         self.assertIn(self.user_park.username.upper(), main_area.text)
+
+        #포스트가 미존재함.
+        Post.objects.all().delete()
+        self.assertEqual(Post.objects.count(), 0)
+        response = self.client.get('/board/')
+        soup = BeautifulSoup(response.content, 'html.parser')
+        main_area = soup.find('div', id='main-area')
+        self.assertIn('게시물이 존재하지 않습니다', main_area.text)
+
 
     def test_post_detail(self):
         # 포스트가 존재함.
