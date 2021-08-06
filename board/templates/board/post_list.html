@@ -23,7 +23,7 @@
                     </div>
                     <div class="card-footer text-muted">
                         Posted on January 1, 2021 by
-                        <a href="{{ p.created_at }}">작성자명 쓸 위치</a>
+                        <a href="{{ p.created_at }}">{{ p.author | upper }}</a>
                     </div>
                 </div>
                   {% endfor %}

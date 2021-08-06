@@ -1,5 +1,6 @@
 from django.test import TestCase, Client
 from bs4 import BeautifulSoup
+from django.contrib.auth.models import User
 from .models import Post
 
 # Create your tests here.
@@ -7,6 +8,8 @@ from .models import Post
 class TestView(TestCase):
     def setUp(self):
         self.client = Client()
+        self.user_kim = User.objects.create_user(username='kim', password='kimdjango')
+        self.user_park = User.objects.create_user(username='park', password='parkdjango')
 
     def navbar_test(self, soup):
         # navbar 확인
@@ -48,10 +51,12 @@ class TestView(TestCase):
         post_001 = Post.objects.create(
             title='첫 번째 포스트입니다.',
             content='Hello World. We are the world',
+            author=self.user_kim,
         )
         post_002 = Post.objects.create(
             title='두 번째 포스트입니다.',
             content='1등이 전부는 아니잖아요?',
+            author=self.user_park,
         )
         self.assertEqual(Post.objects.count(), 2)
 
@@ -66,11 +71,15 @@ class TestView(TestCase):
         # 이제 더 이상 게시물이 존재하지않는다는 문구는 보이지 않음.
         self.assertNotIn('이제 더 이상 게시물이 존재하지 않습니다', main_area.text)
 
+        self.assertIn(self.user_kim.username.upper(), main_area.text)
+        self.assertIn(self.user_park.username.upper(), main_area.text)
+
     def test_post_detail(self):
         # 포스트가 존재함.
         post_001 = Post.objects.create(
             title='첫 번째 포스트입니다.',
             content='Hello World. We are the world',
+            author=self.user_kim,
         )
         # 포스트의 url = '/board/1/'
         self.assertEqual(post_001.get_absolute_url(), '/board/1/')
@@ -92,7 +101,8 @@ class TestView(TestCase):
         post_area = main_area.find('div', id='post-area')
         self.assertIn(post_001.title, post_area.text)
 
-        # 포스트 영역에 author 확인가능(미구현)
+        # 포스트 영역에 author 확인가능(구현)
+        self.assertIn(self.user_kim.username.upper(), post_area.text)
 
         # 포스트 영역에 content-내용을 확인가능
         self.assertIn(post_001.content, post_area.text)
