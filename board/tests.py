@@ -210,17 +210,26 @@ class TestView(TestCase):
 
         self.assertIn('Create New Post', main_area.text)
 
+        tag_str_input = main_area.find('input', id='id_tags_str')
+        self.assertTrue(tag_str_input)
+
         self.client.post(
             '/board/create_post/',
             {
                 'title': 'Post Form Create',
-                'content': "Post Form Page Create"
+                'content': "Post Form Page Create",
+                'tags_str': 'new tag; Korean Tag, python'
             }
         )
         self.assertEqual(Post.objects.count(), 4)
         last_post = Post.objects.last()
         self.assertEqual(last_post.title, "Post Form Create")
         self.assertEqual(last_post.author.username, 'park')
+
+        self.assertEqual(last_post.tags.count(), 3)
+        self.assertTrue(Tag.objects.get(name='new tag'))
+        self.assertTrue(Tag.objects.get(name='Korean Tag'))
+        self.assertEqual(Tag.objects.count(), 5)
 
     def test_update_post(self):
         update_post_url = f'/board/update_post/{self.post_003.pk}/'
