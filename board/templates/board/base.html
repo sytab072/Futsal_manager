@@ -24,8 +24,8 @@
                         <h5 class="card-header">Search</h5>
                         <div class="card-body">
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Search for..." />
-                                <span class="input-group-append"><button class="btn btn-secondary" type="button">Go!</button></span>
+                                <input class="form-control" type="text" placeholder="Search for..." id="search-input"/>
+                                <span class="input-group-append"><button class="btn btn-secondary" type="button" onclick="searchPost();">Go!</button></span>
                             </div>
                         </div>
                     </div>
@@ -51,6 +51,24 @@
                   </div>
               </div>
           </div>
+        <script>
+            function searchPost(){
+                let searchValue = document.getElementById('search-input').value.trim();
+                if (searchValue.length > 1){
+                    location.href="/board/search/" + searchValue + "/";
+                }
+                else{
+                    alert('검색어('+ searchValue +')가 너무 짧습니다.');
+                }
+            };
+
+            document.getElementById('search-input').addEventListener('keyup', function(event)
+            {
+                if(event.key === 'Enter'){
+                    searchPost();
+                }
+            });
+        </script>
         {% include 'board/footer.html' %}
 
           <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
