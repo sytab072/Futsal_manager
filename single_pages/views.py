@@ -12,8 +12,8 @@ def landing(request):
         }
     )
 
-def about_me(request):
+def about_site(request):
     return render(
         request,
-        'single_pages/about_me.html'
+        'single_pages/about_site.html'
     )
