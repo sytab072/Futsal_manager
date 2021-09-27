@@ -7,6 +7,8 @@
 
     <link rel="stylesheet" href="{%static './board/bootstrap/bootstrap.min.css' %}" media="screen">
     <link rel="stylesheet" href="{%static './single_pages/css/about_site.css' %}" media="screen">
+    <link rel="icon" href="{%static './board/images/logo.ico' %}">
+
 
     <script src="https://kit.fontawesome.com/6a1c49f1ef.js" crossorigin="anonymous"></script>
 </head>
@@ -54,11 +56,363 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1>PORTFOLIO FOR GRADUATE</h1>
+                <h1>등록된 팀 목록</h1>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card" data-toggle="modal" data-target="#team01">
+                <img class="card-img-top" src="{% static 'single_pages/images/team01_1.png' %}">
+                <div class="card-body">
+                    <h5 class="card-title">A.F.C</h5>
+                    <p>지역 : 은평구 실력수준 : 하(0%~35%) 그룹 : 고등학생</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card" data-toggle="modal" data-target="#team02">
+                <img class="card-img-top" src="{% static 'single_pages/images/team02_1.png' %}">
+                <div class="card-body">
+                    <h5 class="card-title">ALL.IS.ONE</h5>
+                    <p>지역 : 송파구 실력수준 : 중(36%~70%) 그룹 : 대학생</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card" data-toggle="modal" data-target="#team03">
+                <img class="card-img-top" src="{% static 'single_pages/images/team03_1.png' %}">
+                <div class="card-body">
+                    <h5 class="card-title">B.S.F</h5>
+                    <p>지역 : 강남구 실력수준 : 중(36%~70%) 그룹 : 대학생</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card" data-toggle="modal" data-target="#team04">
+                <img class="card-img-top" src="{% static 'single_pages/images/team04_1.png' %}">
+                <div class="card-body">
+                    <h5 class="card-title">COMET</h5>
+                    <p>지역 : 종로구 실력수준 : 상(71%~100%) 그룹 : 직장인</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card" data-toggle="modal" data-target="#team05">
+                <img class="card-img-top" src="{% static 'single_pages/images/team05_1.png' %}">
+                <div class="card-body">
+                    <h5 class="card-title">gyn&n</h5>
+                    <p>지역 : 성동구 실력수준 : 상(71%~100%) 그룹 : 대학생</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card" data-toggle="modal" data-target="#team06">
+                <img class="card-img-top" src="{% static 'single_pages/images/team06_1.png' %}">
+                <div class="card-body">
+                    <h5 class="card-title">lovepink</h5>
+                    <p>지역 : 광진구 실력수준 : 상(71%~100%) 그룹 : 고등학생</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card" data-toggle="modal" data-target="#team07">
+                <img class="card-img-top" src="{% static 'single_pages/images/team07_1.png' %}">
+                <div class="card-body">
+                    <h5 class="card-title">mbk</h5>
+                    <p>지역 : 도봉구 실력수준 : 중(36%~70%) 그룹 : 직장인</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card" data-toggle="modal" data-target="#team08">
+                <img class="card-img-top" src="{% static 'single_pages/images/team08_1.png' %}">
+                <div class="card-body">
+                    <h5 class="card-title">sg.fc</h5>
+                    <p>지역 : 강북구 실력수준 : 상(71%~100%) 그룹 : 대학생</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card" data-toggle="modal" data-target="#team09">
+                <img class="card-img-top" src="{% static 'single_pages/images/team09_1.png' %}">
+                <div class="card-body">
+                    <h5 class="card-title">suyday</h5>
+                    <p>지역 : 마포구 실력수준 : 하(0%~35%) 그룹 : 직장인</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card" data-toggle="modal" data-target="#team10">
+                <img class="card-img-top" src="{% static 'single_pages/images/team10_1.png' %}">
+                <div class="card-body">
+                    <h5 class="card-title">tong</h5>
+                    <p>지역 : 양천구 실력수준 : 하(0%~35%) 그룹 : 고등학생</p>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="team01" tabindex="-1" role="dialog" aria-labelledby="team01ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="team01ModalLabel">A.F.C</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <img class="img-fluid" src="{% static 'single_pages/images/team01_1.png' %}">
+                        <img class="img-fluid" src="{% static 'single_pages/images/team01_2.png' %}">
+                    </div>
+                    <div class="col-lg-5">
+                        <p>지역 : 은평구 실력수준 : 하(0%~35%) 그룹 : 고등학생</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="team02" tabindex="-1" role="dialog" aria-labelledby="team02ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="team02ModalLabel">ALL.IS.ONE</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <img class="img-fluid" src="{% static 'single_pages/images/team02_1.png' %}">
+                        <img class="img-fluid" src="{% static 'single_pages/images/team02_2.png' %}">
+                    </div>
+                    <div class="col-lg-5">
+                        <p>지역 : 송파구 실력수준 : 중(36%~70%) 그룹 : 대학생</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="team03" tabindex="-1" role="dialog" aria-labelledby="team03ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="team03ModalLabel">B.S.F</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <img class="img-fluid" src="{% static 'single_pages/images/team03_1.png' %}">
+                        <img class="img-fluid" src="{% static 'single_pages/images/team03_2.png' %}">
+                    </div>
+                    <div class="col-lg-5">
+                        <p>지역 : 강남구 실력수준 : 중(36%~70%) 그룹 : 대학생</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="team04" tabindex="-1" role="dialog" aria-labelledby="team04ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="team04ModalLabel">COMET</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <img class="img-fluid" src="{% static 'single_pages/images/team04_1.png' %}">
+                        <img class="img-fluid" src="{% static 'single_pages/images/team04_2.png' %}">
+                    </div>
+                    <div class="col-lg-5">
+                        <p>지역 : 종로구 실력수준 : 상(71%~100%) 그룹 : 직장인</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="team05" tabindex="-1" role="dialog" aria-labelledby="team05ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="team05ModalLabel">gyn&n</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <img class="img-fluid" src="{% static 'single_pages/images/team05_1.png' %}">
+                        <img class="img-fluid" src="{% static 'single_pages/images/team05_2.png' %}">
+                    </div>
+                    <div class="col-lg-5">
+                        <p>지역 : 성동구 실력수준 : 상(71%~100%) 그룹 : 대학생</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="team06" tabindex="-1" role="dialog" aria-labelledby="team06ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="team06ModalLabel">lovepink</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <img class="img-fluid" src="{% static 'single_pages/images/team06_1.png' %}">
+                        <img class="img-fluid" src="{% static 'single_pages/images/team06_2.png' %}">
+                    </div>
+                    <div class="col-lg-5">
+                        <p>지역 : 광진구 실력수준 : 상(71%~100%) 그룹 : 고등학생</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="team07" tabindex="-1" role="dialog" aria-labelledby="team07ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="team07ModalLabel">mbk</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <img class="img-fluid" src="{% static 'single_pages/images/team07_1.png' %}">
+                        <img class="img-fluid" src="{% static 'single_pages/images/team07_2.png' %}">
+                    </div>
+                    <div class="col-lg-5">
+                        <p>지역 : 도봉구 실력수준 : 중(36%~70%) 그룹 : 직장인</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="team08" tabindex="-1" role="dialog" aria-labelledby="team08ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="team08ModalLabel">sg.fc</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <img class="img-fluid" src="{% static 'single_pages/images/team08_1.png' %}">
+                        <img class="img-fluid" src="{% static 'single_pages/images/team08_2.png' %}">
+                    </div>
+                    <div class="col-lg-5">
+                        <p>지역 : 강북구 실력수준 : 상(71%~100%) 그룹 : 대학생</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="team09" tabindex="-1" role="dialog" aria-labelledby="team09ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="team09ModalLabel">suyday</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <img class="img-fluid" src="{% static 'single_pages/images/team09_1.png' %}">
+                        <img class="img-fluid" src="{% static 'single_pages/images/team09_2.png' %}">
+                    </div>
+                    <div class="col-lg-5">
+                        <p>지역 : 마포구 실력수준 : 하(0%~35%) 그룹 : 직장인</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="team10" tabindex="-1" role="dialog" aria-labelledby="team10ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="team10ModalLabel">tong</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <img class="img-fluid" src="{% static 'single_pages/images/team10_1.png' %}">
+                        <img class="img-fluid" src="{% static 'single_pages/images/team10_2.png' %}">
+                    </div>
+                    <div class="col-lg-5">
+                        <p>지역 : 양천구 실력수준 : 하(0%~35%) 그룹 : 고등학생</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="fixed-bottom">
 {% include 'board/footer.html' %}

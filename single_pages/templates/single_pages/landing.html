@@ -3,10 +3,11 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>테스트입니다.</title>
+    <title>풋살매니저</title>
 
     <link rel="stylesheet" href="{%static './board/bootstrap/bootstrap.min.css' %}" media="screen">
     <link rel="stylesheet" href="{%static './single_pages/css/landing.css' %}" media="screen">
+    <link rel="icon" href="{%static './board/images/logo.ico' %}">
 
     <script src="https://kit.fontawesome.com/6a1c49f1ef.js" crossorigin="anonymous"></script>
 </head>
@@ -18,11 +19,11 @@
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-lg-6 text-light">
-                <h1 class="mt-5">TCN</h1>
-                <p>캡스톤디자인 12조, TCN Django 임시 대문페이지 입니다.</p>
+                <!--<h1 class="mt-5">풋살매니저</h1>
+                <p>풋살매니저를 통해 축구/풋살매니아들의 팀간 경기 매치를 성사하여 경기를 즐길 수 있는 서비스를 제공해 드립니다.</p>-->
             </div>
             <div class="col-lg-5 mt-5">
-                <h2 class="text-light">Board - 최근 게시물</h2>
+                <h2 class="text-light">자유게시판</h2>
                 {% for post in recent_posts %}
                 <div class="card mt-1">
                     <div class="card-body">
