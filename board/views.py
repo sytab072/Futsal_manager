@@ -67,7 +67,7 @@ def tag_page(request, slug):
 
 class PostCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Post
-    fields = ['title', 'hook_text', 'content', 'head_image', 'file_upload', 'category',]
+    fields = ['title', 'hook_text', 'content', 'head_image', 'file_upload', 'category']
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
