@@ -52,20 +52,20 @@ class TestView(TestCase):
         # navbar 확인
         navbar = soup.nav
         # navbar 문구 확인
-        self.assertIn('Board', navbar.text)
-        self.assertIn('About Me', navbar.text)
+        self.assertIn('자유게시판', navbar.text)
+        self.assertIn('팀목록&예약', navbar.text)
 
-        logo_btn = navbar.find('a', text='Community')
+        logo_btn = navbar.find('a', text='풋살Manager')
         self.assertEqual(logo_btn.attrs['href'], '/')
 
-        home_btn = navbar.find('a', text='Home')
+        home_btn = navbar.find('a', text='홈')
         self.assertEqual(home_btn.attrs['href'], '/')
 
-        board_btn = navbar.find('a', text='Board')
+        board_btn = navbar.find('a', text='자유게시판')
         self.assertEqual(board_btn.attrs['href'], '/board/')
 
-        about_me_btn = navbar.find('a', text='About Me')
-        self.assertEqual(about_me_btn.attrs['href'], '/about_me/')
+        about_site_btn = navbar.find('a', text='팀목록&예약')
+        self.assertEqual(about_site_btn.attrs['href'], '/about_site/')
 
     def category_card_test(self, soup):
         categories_card = soup.find('div', id='categories-card')

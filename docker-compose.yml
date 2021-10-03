@@ -1,0 +1,12 @@
+version: '3'
+# 개인컴퓨터 8000포트가 이미 사용중에 있으므로, 8080으로 포트를 변경하여 진행. 따라서 127.0.0.1:8080으로 변경하였습니다.
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - 8080:8000
+    env_file:
+      - ./.env.dev
